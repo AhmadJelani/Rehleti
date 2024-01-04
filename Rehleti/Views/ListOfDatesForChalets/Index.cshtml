@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Rehleti.Models.ListOfDatesForChalet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+@if (Model.Any())
+{
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Check-In And Chaeck-Out Dates</h4>
+                    <a class="btn btn-primary w-15 py-3" asp-action="Create" asp-route-id="@ViewData["cid"]">Add Date</a>
+                    <div class="table-responsive">
+                        <table id="Example1" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Check-In
+                                    </th>
+                                    <th>
+                                        Check-Out
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Chalet)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateFrom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateTo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Chalet.Name)
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a class="btn btn-outline-danger"asp-controller="ListOfDatesForChalets" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <h3>
+            Please Add Check-In and Check-Out Dates
+        </h3>
+        <div class=" col-3">
+            <a class="btn btn-primary w-15 py-3" asp-action="Create" asp-route-id="@ViewData["cid"]">Add Date</a>
+        </div>
+    </div>
+}

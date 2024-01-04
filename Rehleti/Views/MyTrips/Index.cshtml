@@ -1,0 +1,117 @@
+﻿@model Tuple<IEnumerable<MyTripsJoinTableChalet>,IEnumerable<MyTripsJoinTablesTrip>>
+@{
+    ViewData["Title"] = "MyTrips";
+}
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Your Reservation</h1>
+                    <p>Give Your Feedback</p>
+                </div>
+            </div>
+            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Chalet</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">Adventure Trip</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+                    @if (Model.Item1.Any())
+                    {
+                        @foreach (var item in Model.Item1)
+                        {
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            @{
+                                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                        }
+                                            <a><img class="img-fluid" src="@Url.Content($"{dir}/Images/"+item?.chalet?.ImagePath)" alt=""></a>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">JD @item?.chalet?.Price</h5>
+                                            <a class="d-block h5 mb-2">@item?.chalet?.Name</a>
+                                            <p><i class="fa fa-angle-right me-2" style="color:#05bb8a"></i>@item?.chalet?.Description</p>
+                                            <br />
+                                            <br />
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center py-2"></small>
+                                                <small class="flex-fill text-center border-end py-2">
+                                                    <div class=" col-12">
+                                                        <a class="btn btn-primary w-75 py-3" asp-controller="ChaletFeedbacks" asp-action="Create" asp-route-id="@item?.chalet?.Id">Give Your Feedback</a>
+                                                    </div>
+                                                </small>
+                                                <small class="flex-fill text-center py-2"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <h3 class=" wow slideInLeft" style="text-align:center">
+                            You Don't Book Any Chalet
+                        </h3>
+                    }
+                </div>
+            </div>
+            <div id="tab-2" class="tab-pane fade show p-0">
+                <div class="row g-4">
+                    @if (Model.Item2.Any())
+                    {
+                        @foreach (var item in Model.Item2)
+                        {
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="position-relative overflow-hidden">
+                                        @{
+                                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                        }
+                                        <a><img class="img-fluid" src="@Url.Content($"{dir}/Images/"+item?.trip?.ImagePath)" alt=""></a>
+                                    </div>
+                                    <div class="p-4 pb-0">
+                                        <h5 class="text-primary mb-3">JD @item?.trip?.Price</h5>
+                                        <a class="d-block h5 mb-2">@item?.trip?.Name</a>
+                                        <p><i class="fa fa-angle-right me-2" style="color:#05bb8a"></i>@item?.trip?.Description</p>
+
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center py-2"></small>
+                                            <small class="flex-fill text-center py-2">
+                                                <div class=" col-12">
+                                                    <a class="btn btn-primary w-75 py-3" asp-controller="TripFeedbacks" asp-action="Create" asp-route-id="@item?.trip?.Id">Give Your Feedback</a>
+                                                </div>
+                                            </small>
+                                            <small class="flex-fill text-center py-2"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h3 class=" wow slideInLeft" style="text-align:center">
+                            You Don't Book Any Adventure Trip
+                        </h3>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Property List End -->

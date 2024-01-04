@@ -1,0 +1,142 @@
+﻿@model Tuple<UserGuest,Chalet,IEnumerable<ListOfDatesForChalet>,IEnumerable<BookChalet>,List<string>,IEnumerable<FeedbackChaletJoinTable>>
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid header bg-white p-0">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h1 class="mb-5">Book A <span class="text-primary text-uppercase">Chalet</span></h1>
+    </div>
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <div class="col-lg-12">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" value="@Model.Item2.Name" disabled>
+                                    <label for="name">Chalet Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" value="JD @Model.Item2.Price per day" id="email" disabled>
+                                    <label>Price</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating date" id="date4" data-target-input="nearest">
+                                    <input type="number" class="form-control datetimepicker-input" value="@Model.Item2.NumberOfGuests" placeholder="Number Of Guests" data-target="#date4" data-toggle="datetimepicker" disabled />
+                                    <label for="checkout">Maximum Number Of Guests</label>
+                                </div>
+                            </div>
+                            @if (Model.Item3.Any())
+                            {
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <select class="form-select" name="Date" id="select3">
+                                            @foreach (var item in Model.Item3)
+                                            {
+                                                <option>@item.DateFrom</option>
+                                            }
+                                        </select>
+                                        <label for="select3">Select Check-In Date</label>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-12">
+                                    <div class="form-floating date" id="date4" data-target-input="nearest">
+                                        <input type="number" class="form-control datetimepicker-input" value="No Check-In Dates" placeholder="Number Of Guests" data-target="#date4" data-toggle="datetimepicker" disabled />
+                                        <label for="checkout">No Check-In Date</label>
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Special Request" value id="message" style="height: 100px" disabled>@Model.Item2.Description</textarea>
+                                    <label for="message">Description</label>
+                                </div>
+                            </div>
+                            <p style="color:red;">@ViewData["ErrorOfNumber"]</p>
+                            @if (Model.Item3.Any())
+                            {
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Cash</button>
+                                    <br />
+                                    <br />
+                                    <button class="btn btn-primary w-100 py-3" asp-controller="Payment" asp-action="VisaCardChalet" asp-route-chaletID="@Model.Item2.Id">Visa Card</button>
+                                    <br />
+                                    <br />
+                                </div>
+                            }
+                        </div>
+                    </form>
+                    <div class=" col-12">
+                        <a class="btn btn-primary w-100 py-3" asp-controller="ListOfChalets" asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 animated fadeIn">
+            <div class="owl-carousel header-carousel">
+                @foreach (var imagePath in Model.Item5)
+                {
+                    <div class="owl-carousel-item">
+                        @{
+                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                        }
+                        <img src="@Url.Content($"{dir}/Images/" + imagePath)" alt="Image">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Item6.Any())
+{
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="mb-3">Feedback</h1>
+                <p>
+                    Your feedback is our compass, guiding us towards excellence. We value your opinions, whether
+                    they're about your recent chalet stay, thrilling adventure trip, or your overall experience
+                    with Rehleti. Your insights are instrumental in helping us continually enhance our offerings
+                    and services. We're committed to providing you with the best domestic tourism experiences in
+                    Jordan, and your feedback is a vital part of that journey. Share your thoughts with us, and
+                    let's keep making your adventures even more extraordinary together.
+                </p>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                @foreach (var item in Model.Item6)
+                {
+                    <div class="testimonial-item bg-light rounded p-3">
+                        <div class="bg-white border rounded p-4">
+                            <p>@item.feedback.Text</p>
+                            <div class="d-flex align-items-center">
+                                @{
+                                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                        }
+                                <img class="img-fluid flex-shrink-0 rounded" src="@Url.Content($"{dir}/Images/"+item.user.ImagePath)" style="width: 45px; height: 45px;">
+                                <div class="ps-3">
+                                    <h6 class="fw-bold mb-1">@(item.user.FirstName + " " + item.user.LastName)</h6>
+                                    <small>@item.chalet.Name</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

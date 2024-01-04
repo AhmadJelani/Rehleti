@@ -1,0 +1,128 @@
+﻿@model Tuple<IEnumerable<AdventureTrip>, IEnumerable<SearchChalet>>
+@{
+    ViewData["Title"] = "Search";
+}
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Adventure Trips</h1>
+                    <p>Explore Our Exclusive Selection of Adventure Trips in Jordan.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+                    @if (Model.Item1.Any())
+                    {
+                        @foreach (var item in Model.Item1)
+                        {
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            <a asp-route-id="@item.Id" asp-controller="BookTrips" asp-action="Create"><img class="img-fluid" src="@Url.Content("~/Images/"+item.ImagePath)" alt=""></a>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">JD @item.Price</h5>
+                                            <a class="d-block h5 mb-2" asp-route-id="@item.Id" asp-controller="BookTrips" asp-action="Create">@item.Name</a>
+                                            <p><i class="fa fa-angle-right me-2" style="color:#05bb8a"></i>@item.Description</p>
+                                            <br />
+                                            <div class="ps-2">
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                            </div>
+                                            <br />
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>@item.NumberOfGuests</small>
+                                                <small class="flex-fill text-center py-2"><i class="fas fa-calendar text-primary me-2" style="color:#05bb8a"></i>@item.DateFrom</small>
+                                                <small class="flex-fill text-center py-2"><i class="fas fa-calendar text-primary me-2" style="color:#05bb8a"></i>@item.DateTo</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <h3 class=" wow slideInLeft" style="text-align:center">
+                            Come Back Soon We Don't Have Any Adventure Trip Right Now
+                        </h3>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Property List End -->
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Chalets</h1>
+                    <p>Explore Our Exclusive Selection of Chalets in Jordan.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+                    @if (Model.Item2.Any())
+                    {
+                        @foreach (var item in Model.Item2)
+                        {
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            <a asp-route-id="@item.chalet.Id" asp-controller="BookChalets" asp-action="Create"><img class="img-fluid" src="@Url.Content("~/Images/"+item.chalet.ImagePath)" alt=""></a>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">JD @item.chalet.Price</h5>
+                                            <a class="d-block h5 mb-2" asp-route-id="@item.chalet.Id" asp-controller="BookChalets" asp-action="Create">@item.chalet.Name</a>
+                                            <p><i class="fa fa-angle-right me-2" style="color:#05bb8a"></i>@item.chalet.Description</p>
+                                            <br />
+                                            <div class="ps-2">
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                                <small class="fa fa-star text-primary"></small>
+                                            </div>
+                                            <br />
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center py-2"></small>
+                                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>@item.chalet.NumberOfGuests</small>
+                                                <small class="flex-fill text-center py-2"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <h3 class=" wow slideInLeft" style="text-align:center">
+                            Come Back Soon We Don't Have Any Chalet Right Now
+                        </h3>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Property List End -->
+<script src="https://kit.fontawesome.com/your-unique-identifier.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>

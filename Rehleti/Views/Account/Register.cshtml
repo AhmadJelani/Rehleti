@@ -1,0 +1,76 @@
+﻿@model Rehleti.Models.UserGuest
+
+@{
+	ViewData["Title"] = "Register";
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rehleti | Sign In</title>
+    <link href="~/Images/LOGO.png" rel="icon">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Register and signin/colorlib-regform-13/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Register and signin/colorlib-regform-13/css/style.css">
+</head>
+<body>
+    <div class="main">
+
+        <div class="container">
+            <div class="booking-content">
+                <div class="booking-image">
+                    <img class="booking-img" src="~/Register and signin/colorlib-regform-13/images/login.jpg" alt="Booking Image">
+                </div>
+                <div class="booking-form">
+                    <form id="booking-form" asp-action="Register" enctype="multipart/form-data">
+                        <h2>Register</h2>
+                        <p>Explore adventure trips and chalets in Jordan.</p>
+                        <p style="color:red" class="text-danger">@ViewData["UsedEmail"]</p>
+                        <p style="color:red" class="text-danger">@ViewData["PasswordError"]</p>
+                        <div class="form-group form-input">
+							<input type="text" asp-for="FirstName" required />
+                            <label class="form-label">Your First Name</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="text"asp-for="LastName" required />
+                            <label class="form-label">Your Last Name</label>
+                        </div>
+						<div class="form-group form-input">
+							<input type="email" asp-for="Email" required />
+							<label class="form-label">Your Email</label>
+						</div>
+						<div class="form-group form-input">
+							<input type="password" asp-for="Password" required />
+							<label class="form-label">Your Password</label>
+						</div>
+						<div class="form-group form-input">
+							<input type="password" asp-for="ConfirmPassword" required />
+							<label class="form-label">Confirm Your Password</label>
+						</div>
+						<div class="form-group form-input">
+							<input type="text" asp-for="PhoneNumber" required />
+							<label class="form-label">Your Phone Number</label>
+						</div>
+						<div class="form-group form-input">
+							<input type="file" asp-for="ImageFile"value="Your Image" required />
+							<label class="form-label"></label>
+						</div>
+                        <div class="form-submit">
+                            <input type="submit" value="Register" class="submit" id="submit" name="submit" />
+                            <a asp-controller="Account"asp-action="SignIn" class="vertify-booking">Have an account ? Sign In</a>
+                            <a asp-controller="Account" asp-action="ForgotPassword" class="vertify-booking">Forgot password ?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+    <script src="~/Register and signin/colorlib-regform-13/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Register and signin/colorlib-regform-13/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿@model Rehleti.Models.Chalet
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <form asp-controller="Chalets" asp-action="Create" enctype="multipart/form-data">
+                        <p style="color:red">@ViewData["ImageError"]</p>
+                        <p style="color:red">@ViewData["FilePDFError"]</p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" asp-for="Name" id="Name" placeholder="Your Chalet Name"required>
+                                    <label asp-for="Name">Your Chalet Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" asp-for="NumberOfGuests" id="NumberOfGuests" placeholder="Number Of Guests"required>
+                                    <label asp-for="NumberOfGuests">Maximum Number Of Guests</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" asp-for="Price" id="Price" placeholder="Price"required>
+                                    <label asp-for="Price">Price</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" name="ImagesFile" asp-for="ImageFile" id="ImageFile" placeholder="Image For Your Chalet" required multiple>
+                                    <label asp-for="ImageFile">Image For Your Chalet</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" asp-for="PDFFile" id="PDFFile" placeholder="Your Chalet Proof File (PDF)"required>
+                                    <label asp-for="PDFFile">Your Chalet License (PDF)</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Description" asp-for="Description" id="Description" style="height: 150px"required></textarea>
+                                    <label asp-for="Description">Chalet Description</label>
+                                </div>
+                            </div>
+                            <div id="map" style="height: 400px;" class="col-12"></div>
+                            <input type="hidden" asp-for="LacationLatitude" name="locationLatitude" required />
+                            <input type="hidden" asp-for="LacationLongitude" name="locationLongitude" required />
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Add Your Chalet To The List</button>
+                            </div>
+                        </div>
+                        <p style="color:red">@ViewData["ErrorFile"]</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([31.9632, 35.9304], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker = L.marker([31.9632, 35.9304], { draggable: true }).addTo(map); 
+
+    marker.on('dragend', function (event) {
+        var latLng = event.target.getLatLng();
+        document.getElementById('LacationLatitude').value = latLng.lat;
+        document.getElementById('LacationLongitude').value = latLng.lng;
+    });
+</script>

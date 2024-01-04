@@ -1,0 +1,88 @@
+﻿@model Rehleti.Models.Chalet
+
+@{
+    ViewData["Title"] = "Reject";
+}
+<br />
+<br />
+<h1>Approve</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Reject" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group" hidden>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" hidden>
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="JoinDate" class="control-label">Join Date</label>
+                <input asp-for="JoinDate" class="form-control" />
+                <span asp-validation-for="JoinDate" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="NumberOfGuests" class="control-label">Number Of Guests</label>
+                <input asp-for="NumberOfGuests" class="form-control" />
+                <span asp-validation-for="NumberOfGuests" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="LacationLongitude" class="control-label"></label>
+                <input asp-for="LacationLongitude" class="form-control" />
+                <span asp-validation-for="LacationLongitude" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="LacationLatitude" class="control-label"></label>
+                <input asp-for="LacationLatitude" class="form-control" />
+                <span asp-validation-for="LacationLatitude" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="OwnerId" class="control-label"></label>
+                <input asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId" />
+                <span asp-validation-for="OwnerId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" hidden>
+                <label asp-for="ImagePath" class="control-label"></label>
+                <input asp-for="ImagePath" class="form-control" asp-items="ViewBag.OwnerId" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="ProofOfOwner" class="control-label"></label>
+                <input asp-for="ProofOfOwner" class="form-control" asp-items="ViewBag.OwnerId" />
+                <span asp-validation-for="ProofOfOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4>Do You Want To Reject This Chalet?</h4>
+                <input type="submit" value="Reject" class="btn btn-outline-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+</div>
+

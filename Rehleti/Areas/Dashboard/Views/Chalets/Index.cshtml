@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Rehleti.Models.Chalet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<div class="row">
+<div class="col-lg-12 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">Chalets</h4>
+<div class="table-responsive">
+<table id="Example1"class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProofOfOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                Join Date
+            </th>
+            <th>
+                Number Of Guests
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@Url.Content("~/Proof Files/"+item.ProofOfOwner)">Download PDF</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfGuests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            @if(item.LacationLatitude!=null)
+            {
+                <td>
+                    Available
+                </td>
+            }
+            else{
+                <td>
+                    Not Available
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                                        @{
+                                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                }
+                <img src="@Url.Content($"{dir}/Images/"+item.ImagePath)" asp-append-version=true height="50px" width="50px" style="border-radius:30%">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.FirstName)
+                @Html.DisplayFor(modelItem => item.Owner.LastName)
+            </td>
+            <td>
+                @if (item.Status=="Pending")
+                {
+                    <a class="btn btn-outline-success" style="margin:1.5px" asp-action="Approve" asp-route-id="@item.Id">Approve</a>
+                    <a class="btn btn-outline-danger" style="margin:1.5px" asp-action="Reject" asp-route-id="@item.Id">Reject</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>

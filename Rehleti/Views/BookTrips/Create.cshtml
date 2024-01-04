@@ -1,0 +1,81 @@
+﻿@model Tuple<AdventureTrip,UserGuest,IEnumerable<BookTrip>>
+@{
+    ViewData["Title"] = "Create";
+}
+<!-- Booking Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-5">Book An <span class="text-primary text-uppercase">Adventure Trip</span></h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6 d-flex align-items-center">
+                @{
+                                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                        }
+                <img class="img-fluid wow zoomIn" data-wow-delay="0.3s" src="@Url.Content($"{dir}/Images/"+ViewData["ImgTripPath"])" style="border-radius: 64px 96px 132px 15px;">
+            </div>
+            <div class="col-lg-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name"value="@Model.Item1.Name"disabled>
+                                    <label for="name">Adventure Trip Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control"value="JD @Model.Item1.Price per person" id="email"disabled>
+                                    <label >Price</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input"value="@Model.Item1.DateFrom" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"disabled />
+                                    <label for="checkin">Check In</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date4" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" value="@Model.Item1.DateTo" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" disabled />
+                                    <label for="checkout">Check Out</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating date" id="date4" data-target-input="nearest">
+                                    <input type="number" class="form-control datetimepicker-input" name="NumberOfAdventurous" value="Number Of Adventurous" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" required />
+                                    <label >Number Of Adventurous</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Special Request"value id="message" style="height: 100px"disabled>@Model.Item1.Description</textarea>
+                                    <label for="message">Description</label>
+                                </div>
+                            </div>
+                            <div class="form-group"hidden>
+                                <label asp-for="@Model.Item1.Id" class="control-label"></label>
+                                <select asp-for="@Model.Item1.Id" class="form-control" asp-items="ViewBag.AdventureTripId"name="AdventureTripID"></select>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                <br />
+                                <br />
+                                <button class="btn btn-primary w-100 py-3" asp-controller="Payment" asp-action="VisaCardTrip" asp-route-TripID="@Model.Item1.Id">Visa Card</button>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </form>
+                    <div class=" col-12">
+                        <a class="btn btn-primary w-100 py-3" asp-controller="Home" asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking End -->

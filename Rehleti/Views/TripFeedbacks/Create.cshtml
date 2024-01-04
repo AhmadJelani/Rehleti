@@ -1,0 +1,39 @@
+﻿@model Rehleti.Models.TripFeedback
+@{
+    ViewData["Title"] = "Create";
+}      
+<!-- Booking Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-5">Adventure Trip<span class="text-primary text-uppercase"> Feedback</span></h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-controller="TripFeedbacks" asp-action="Create">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for="Text" class="form-control" placeholder="Give Your Feedback"value id="message" style="height: 100px"required></textarea>
+                                    <label for="message">Your Feedback</label>
+                                </div>
+                            </div>
+                            <p style="color:red">@ViewData["Error"]</p>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div class=" col-12">
+                        <a class="btn btn-primary w-100 py-3" asp-controller="MyTrips" asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking End -->

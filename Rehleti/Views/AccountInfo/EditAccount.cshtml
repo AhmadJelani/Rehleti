@@ -1,0 +1,80 @@
+﻿@model Rehleti.Models.UserGuest
+@{
+    ViewData["Title"] = "EditAccount";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rehleti || Account Info</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Info/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Info/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="booking-content">
+
+                <div class="booking-form">
+                    <form id="booking-form" asp-action="EditAccount" enctype="multipart/form-data">
+                        <h2>Account Info</h2>
+                        <p>Edit @ViewData["Name"]'s Account</p>
+                        <p style="color:red">@ViewData["ImgError"]</p>
+                        <p style="color:red">@ViewData["WrongPass"]</p>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group form-input">
+                            <label class="form-label">Your First Name</label>
+                            <input type="text" asp-for="FirstName" required />
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Your Last Name</label>
+                            <input type="text" asp-for="LastName" required />
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Your Email</label>
+                            <input type="email" asp-for="Email"  required/>
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" asp-for="PhoneNumber" required />
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="file" class="form-control" asp-for="ImageFile" placeholder="Your Image" value="~/Images/+@Model.ImagePath" required>
+                        </div>
+                        <div class="form-group form-input">
+                            <label for="phone" class="form-label">Password</label>
+                            <input type="password" asp-for="Password"required />
+                        </div>
+                        <div class="form-group form-input">
+                            <label for="phone" class="form-label">Confirm Password</label>
+                            <input type="password" asp-for="ConfirmPassword" required />
+                        </div>
+                        <div class="form-group form-input"hidden>
+                            <label for="phone" class="form-label">Role ID</label>
+                            <input type="text" asp-for="RoleId" />
+                        </div>
+                        <div class="form-group form-input" hidden>
+                            <label for="phone" class="form-label">Join Date</label>
+                            <input type="text" asp-for="JoinDate"  />
+                        </div>
+                        <div class="form-submit">
+                            <input type="submit" value="Edit Account" class="submit" id="submit" name="submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+    <script src="~/Info/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Info/js/main.js"></script>
+</body>
+</html>

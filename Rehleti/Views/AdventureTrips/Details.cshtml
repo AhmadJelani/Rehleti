@@ -1,0 +1,68 @@
+﻿@model Rehleti.Models.AdventureTrip
+
+@{
+    ViewData["Title"] = "Details";
+}
+<br />
+<br />
+<h1>Details</h1>
+<div>
+    <h4>AdventureTrip</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            Join Date
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Number Of Guests
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfGuests)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            Check-Out
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateTo)
+        </dd>
+        <dt class = "col-sm-2">
+            Check-In
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateFrom)
+        </dd>
+        <dt class = "col-sm-2">
+            Image
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                var dir = AppDomain.CurrentDomain.BaseDirectory;
+            }
+            <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true width="75px" height="75px" style="border-radius30%" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary w-15 py-3" asp-controller="AccountInfo" asp-action="YourAdventureTrip">Back to List</a>
+</div>

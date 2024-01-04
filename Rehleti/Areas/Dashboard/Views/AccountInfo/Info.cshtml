@@ -1,0 +1,71 @@
+﻿@model Rehleti.Models.UserGuest
+@{
+    ViewData["Title"] = "Info";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Account Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="~/Account/fonts/linearicons/style.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/Account/css/style.css">
+    <link rel="shortcut icon" href="~/Images/LOGO.png" />
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inner">
+            <img src="~/Account/images/image-1.png" alt="" class="image-1">
+            <form>
+                <h3>Account Info</h3>
+                <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="text" class="form-control" name="FirstName" id="FirstName" asp-for="FirstName" disabled>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="text" class="form-control" name="LastName" id="LastName" asp-for="LastName" disabled>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-phone-handset"></span>
+                    <input type="text" class="form-control" name="PhoneNumber" asp-for="PhoneNumber" disabled>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-envelope"></span>
+                    <input type="email" class="form-control" name="Email" asp-for="Email" disabled>
+                </div>
+                <div class="form-holder" hidden>
+                    <span class="lnr lnr-lock"></span>
+                    <input type="password" class="form-control" name="Password" asp-for="Password" disabled>
+                </div>
+                <div class="form-holder" hidden>
+                    <span class="lnr lnr-lock"></span>
+                    <input type="text" class="form-control" name="RoleId" asp-for="RoleId" disabled>
+                </div>
+                <div class="form-holder">
+                    <span></span>
+                    @{
+                        var dir = AppDomain.CurrentDomain.BaseDirectory;
+                    }
+                    <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true
+                         height="75px" width="75px" style="border-radius:30%" />
+                </div>
+                <button asp-area="Dashboard" asp-controller="AccountInfo" asp-action="EditAccount" asp-route-id="@Model.Id">
+                    <span>Edit Account</span>
+                </button>
+                <button asp-area="Dashboard" asp-controller="Home" asp-action="Index">
+                    <span>Back To Home Page</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="~/Account/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Account/js/main.js"></script>
+</body>
+</html>

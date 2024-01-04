@@ -1,0 +1,72 @@
+﻿@model Rehleti.Models.AdventureTrip
+@{
+    ViewData["Title"] = "Create";
+}
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">            
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <form asp-controller="AdventureTrips" asp-action="Create" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" asp-for="Name" id="Name" placeholder="Your Adventure Trip Name" required>
+                                    <label asp-for="Name">Your Adventure Trip Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" asp-for="PDFFile" id="PDFFile" placeholder="Proof Of Company" required>
+                                    <label asp-for="PDFFile">Licences Of Company(PDF)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" asp-for="Price" id="Price" placeholder="Price" required>
+                                    <label asp-for="Price">Price</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" asp-for="ImageFile" id="ImageFile" placeholder="Image" >
+                                    <label asp-for="ImageFile">Image For Trip</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" asp-for="NumberOfGuests" id="NumberOfGuests" placeholder="Number Of Guests"min="0" required>
+                                    <label asp-for="NumberOfGuests">Maximum Number Of Adventurous</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" asp-for="DateFrom" id="DateFrom" placeholder="Check In" required>
+                                    <label asp-for="DateFrom">Start Trip</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" asp-for="DateTo" id="DateTo" placeholder="Check Out"required>
+                                    <label asp-for="DateTo">End Trip</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" asp-for="Description" placeholder="Description Of The Adventure Trip" id="Description" style="height: 150px" required></textarea>
+                                    <label asp-for="Description">Description Of The Adventure Trip</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Add Your Adventure Trip To The List</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

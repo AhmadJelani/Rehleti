@@ -1,0 +1,68 @@
+﻿@model Rehleti.Models.ChaletFeedback
+
+@{
+    ViewData["Title"] = "Create";
+}      
+<!-- Booking Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-5">Chalet<span class="text-primary text-uppercase"> Feedback</span></h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-controller="ChaletFeedbacks" asp-action="Create">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="ps-2 stars">
+                                    <input type="hidden" asp-for="Rate" name="rating" id="rating" value="0" required />
+                                    <i class="fa fa-star" name="rating" data-value=1></i>
+                                    <i class="fa fa-star" name="rating" data-value=2></i>
+                                    <i class="fa fa-star" name="rating" data-value=3></i>
+                                    <i class="fa fa-star" name="rating" data-value=4></i>
+                                    <i class="fa fa-star" name="rating" data-value=5></i>
+                                </div>
+                                <br />
+                                <br/>
+                                <div class="form-floating">
+                                    <textarea asp-for="Text" class="form-control" placeholder="Give Your Feedback"value id="message" style="height: 100px"required></textarea>
+                                    <label for="message">Your Feedback</label>
+                                </div>
+                            </div>
+                            <p style="color:red">@ViewData["Error"]</p>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </form>
+                    <div class=" col-12">
+                        <a class="btn btn-primary w-100 py-3" asp-controller="MyTrips" asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking End -->
+<!-- Js Code -->
+<script>
+    // Updated script to handle star rating selection
+    const stars = document.querySelectorAll(".stars i");
+
+    stars.forEach((star) => {
+        star.addEventListener("click", () => {
+            const value = parseInt(star.getAttribute("data-value"));
+
+            // Update the hidden input value with the selected rating
+            document.getElementById("rating").value = value;
+
+            // Toggle 'active' class for visual feedback
+            stars.forEach((s, index) => {
+                s.classList.toggle("active", index < value);
+            });
+        });
+    });
+</script>

@@ -1,0 +1,69 @@
+﻿@model Rehleti.Models.UserGuest
+@{
+    ViewData["Title"] = "EditAccount";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Edit @ViewData["Name"]'s Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="~/Account/fonts/linearicons/style.css">
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/Account/css/style.css">
+    <link rel="shortcut icon" href="~/Images/LOGO.png" />
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inner">
+            <img src="~/Account/images/image-1.png" alt="" class="image-1">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-action="EditAccount" enctype="multipart/form-data">
+                <h3>Edit @ViewData["Name"]'s Account</h3>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="First Name"required>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Last Name"required>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-phone-handset"></span>
+                    <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Phone Number"required>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-envelope"></span>
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email"required>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-lock"></span>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password"required>
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="file" class="form-control" asp-for="ImageFile" placeholder="Your Image"required>
+                </div>
+                <div class="form-holder" hidden>
+                    <span class="lnr lnr-lock"></span>
+                    <input type="date" class="form-control" asp-for="JoinDate" placeholder="Date">
+                </div>
+                <div class="form-holder" hidden>
+                    <span class="lnr lnr-lock"></span>
+                    <input type="number" class="form-control" asp-for="RoleId" placeholder="Role Id">
+                </div>
+                <button type="submit">
+                    <span>Save Changes</span>
+                </button>
+            </form>
+            <img src="~/Account/images/image-2.png" alt="" class="image-2">
+        </div>
+    </div>
+    <script src="~/Account/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Account/js/main.js"></script>
+</body>
+</html>

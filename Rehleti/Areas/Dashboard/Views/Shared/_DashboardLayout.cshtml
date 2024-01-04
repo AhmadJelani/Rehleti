@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Rehleti Admin Dashboard</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="~/Dashboard Template/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Dashboard Template/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Dashboard Template/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Images/LOGO.png" />
+    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fontawesome.com/icons/calendar-days?f=classic&s=solid">
+
+</head>
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:./partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item sidebar-category">
+                    <p>Navigation</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Dashboard"asp-controller="Home"asp-action="Index">
+                        <i class="mdi mdi-view-quilt menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-category">
+                    <p>Components</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="" mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Tables</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard"asp-controller="UserGuests"asp-action="Index">Users</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="Chalets" asp-action="Index">Chalets</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="AdventureTrips" asp-action="Index">Adventure Trip</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="ContactUs" asp-action="Index">Contact Us</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="ChaletFeedbacks" asp-action="Index">Chalet Feedbacks</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="TripFeedbacks" asp-action="Index">Adventure Trips Feedbacks</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="BookChalets" asp-action="Index">Chalets Booking</a></li>
+                            <li class="nav-item"> <a class="nav-link" asp-area="Dashboard" asp-controller="BookTrips" asp-action="Index">Adventure Trips Booking</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:./partials/_navbar.html -->
+            <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                    <div class="navbar-brand-wrapper">
+                        <a class="navbar-brand brand-logo" asp-area="Dashboard" asp-controller="Home" asp-action="Index"><img src="~/Images/logo.png" alt="logo" height="70px" width="70px" /></a>
+                    </div>
+                    <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, @ViewData["Name"]</h4>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item">
+                            <h4 class="mb-0 font-weight-bold d-none d-xl-block">@DateTime.Now</h4>
+                        </li>
+
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+                <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item nav-profile dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                                @{
+                                    var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                }
+                                <img src="@Url.Content($"{dir}/Images/"+ViewData["ImagePath"])" alt="profile" />
+                                <span class="nav-profile-name">@ViewData["Name"]</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" asp-area="Dashboard" asp-controller="AccountInfo" asp-action="Info" asp-route-id="@ViewData["ID"]">
+                                    <i class="mdi mdi-settings text-primary"></i>
+                                    My Account
+                                </a>
+                                <a class="dropdown-item"asp-area="" asp-controller="Account" asp-action="Logout">
+                                    <i class="mdi mdi-logout text-primary"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- partial -->
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:./partials/_footer.html -->
+            <footer class="footer">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Rehleti.com 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="~/Dashboard Template/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/Dashboard Template/js/off-canvas.js"></script>
+    <script src="~/Dashboard Template/js/hoverable-collapse.js"></script>
+    <script src="~/Dashboard Template/js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="~/Dashboard Template/js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script>
+    $(document).ready(function () {
+        $("#Example1").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+</script>

@@ -1,0 +1,120 @@
+﻿@model Rehleti.Models.ContactU
+@{
+    ViewData["Title"] = "ContactUs";
+}
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- Leaflet Control Geocoder CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.css" />
+<!-- Leaflet Control Geocoder JS -->
+<script src="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.js"></script>
+
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Contact Us</h1>
+            <p>
+                Your satisfaction and questions matter to us, and we're here to assist
+                you every step of the way. Our dedicated team at Rehleti is just a message or call
+                away to address any inquiries, provide assistance with your bookings, or offer
+                recommendations for your perfect family adventure. Your feedback is invaluable to
+                us, helping us continuously improve and enhance your experience. We take pride in
+                our commitment to ensuring your domestic tourism journey in Jordan is seamless and
+                unforgettable. Contact us today, and let us guide you toward your next memorable
+                escape!
+            </p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="row gy-4">
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-3">
+                            <div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <div class="icon me-3" style="width: 45px; height: 45px;">
+                                    <i class="fa fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <span><a href="">Al-Madina Street, Amman, Jordan</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="bg-light rounded p-3">
+                            <div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <div class="icon me-3" style="width: 45px; height: 45px;">
+                                    <i class="fa fa-envelope-open text-primary"></i>
+                                </div>
+                                <span><a href="mailto:Rehleti@info.com">Rehleti@info.com</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="bg-light rounded p-3">
+                            <div class="d-flex align-items-center bg-white rounded p-3" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <div class="icon me-3" style="width: 45px; height: 45px;">
+                                    <i class="fa fa-phone-alt text-primary"></i>
+                                </div>
+                                <span><a href="tel:+0612 345 6789">0612 345 6789</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="map" class="col-md-6 wow fadeInUp" data-wow-delay="0.1s"></div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <form asp-area="" asp-controller="ContactUs" asp-action="Create">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="FullName" type="text" class="form-control" id="FullName" placeholder="Your Full Name"required>
+                                    <label asp-for="FullName">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" asp-for="Email" class="form-control" id="Email" placeholder="Your Email"required>
+                                    <label asp-for="Email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="PhoneNumber" type="text" class="form-control" id="PhoneNumber" placeholder="Phone Number"required>
+                                    <label asp-for="PhoneNumber">Phone Number</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="Subject" type="text" class="form-control" id="Subject" placeholder="Subject"required>
+                                    <label asp-for="Subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for="Text" class="form-control" placeholder="Leave a message here" id="Text" style="height: 150px" required></textarea>
+                                    <label asp-for="Text">Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([31.9795, 35.8656], 13); // Set the initial location to Jordan
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker = L.marker([31.979511799016805, 35.86567926397038], { draggable: false }).addTo(map); // Place a draggable marker in Jordan
+</script>

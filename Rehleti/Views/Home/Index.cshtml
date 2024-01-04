@@ -1,0 +1,253 @@
+﻿@model Tuple<IEnumerable<Chalet>,IEnumerable<AdventureTrip>,IEnumerable<FeedbackChaletJoinTable>,IEnumerable<FeedbackTripJoinTable>>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<br />
+<br />
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <h1 class="display-5 animated fadeIn mb-4">Discover Your Ideal 
+                <span class="text-primary">Trip Getaway for Unforgettable</span>  Family Adventures in Jordan 
+            </h1>
+            <p class="animated fadeIn mb-4 pb-2">
+                Rehleti offers a diverse range of chalets and adventure trips in Jordan, allowing you to create
+                unforgettable family moments in the heart of nature. Experience the country's rich heritage and
+                natural wonders while supporting domestic tourism and local communities. Book your ideal summer
+                getaway today!
+            </p>
+             
+        </div>
+        <div class="col-md-6 animated fadeIn">
+            <div class="owl-carousel header-carousel">
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="~/Website Template/img/carousel-1.jpg" alt="">
+                </div>
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="~/Website Template/img/carousel-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <img class="img-fluid w-100" src="~/Website Template/img/about.jpg">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="mb-4">#1 Destination for Discovering Your Ideal Chalet Or Adventure Trip Getaway</h1>
+                <p class="mb-4">At Rehleti, we take pride in being your ultimate resource for finding the perfect
+                    chalet getaway in Jordan. Our website is dedicated to helping you uncover the most suitable
+                    accommodations, ensuring you and your family have an incredible and unforgettable experience.
+                    With our user-friendly platform, you can explore a wide variety of chalets, each offering a
+                    unique blend of comfort and adventure. We are committed to promoting domestic tourism in
+                    Jordan, so not only will you discover your dream property, but you'll also be contributing
+                    to the growth of local communities. Start your journey with us today and redefine your concept
+                    of a perfect getaway!</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Diverse Selection</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Supporting Local Communities</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Rediscover Your Country</p>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="/Home/AboutUs">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Chalets & Adventure Trips</h1>
+                    <p>Explore Our Exclusive Selection of Chalets and Adventure Trips in Jordan.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Chalet</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">Adventure Trip</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        @if (Model.Item1.Any())
+                        {
+                            @foreach (var item in Model.Item1)
+                            {
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="property-item rounded overflow-hidden">
+                                            <div class="position-relative overflow-hidden">
+                                                <a asp-route-id="@item.Id" asp-controller="BookChalets" asp-action="Create"><img class="img-fluid" src="@Url.Content("~/Images/"+item.ImagePath)" alt=""></a>
+                                            </div>
+                                            <div class="p-4 pb-0">
+                                                <h5 class="text-primary mb-3">JD @item.Price</h5>
+                                            <a class="d-block h5 mb-2" asp-route-id="@item.Id" asp-controller="BookChalets" asp-action="Create">@item.Name</a>
+                                            <p><i class="fa fa-star me-2" style="color:#ff9c1a"></i>(@item.Rating)</p>
+                                            <p><i class="fa fa-angle-right me-2" style="color:#05bb8a"></i>@item.Description</p>
+                                                <br />
+                                                <br />
+                                                <div class="d-flex border-top">
+                                                    <small class="flex-fill text-center py-2"></small>
+                                                <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>@item.NumberOfGuests</small>
+                                                    <small class="flex-fill text-center py-2"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="btn btn-primary py-3 px-5" asp-controller="ListOfChalets" asp-action="Index"> More </a>
+                        </div>
+                        }
+                        else
+                        {
+                            <h3 style="text-align:center">
+                                Come Back Soon We Don't Have Any Chalet Right Now
+                            </h3>
+                        }
+                    </div>
+                </div>
+                <div id="tab-2" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                    @if (Model.Item2.Any())
+                    {
+                        @foreach (var item in Model.Item2)
+                        {
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="position-relative overflow-hidden">
+                                        @{
+                                            var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                        }
+                                        <a asp-route-id="@item.Id" asp-area="" asp-controller="BookTrips" asp-action="Create"><img class="img-fluid" src="@Url.Content(item.ImagePath)" alt=""></a>
+                                    </div>
+                                    <div class="p-4 pb-0">
+                                        <h5 class="text-primary mb-3">JD @item.Price</h5>
+                                        <a class="d-block h5 mb-2" asp-route-id="@item.Id" asp-area="" asp-controller="BookTrips" asp-action="Create">@item.Name</a>
+                                        <p><i class="fa fa-angle-right me-2" style="color:#05bb8a"></i>@item.Description</p>
+
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>@item.NumberOfGuests</small>
+                                            <small class="flex-fill text-center py-2"><i class="fas fa-calendar text-primary me-2" style="color:#05bb8a"></i>@item.DateFrom</small>
+                                            <small class="flex-fill text-center py-2"><i class="fas fa-calendar text-primary me-2" style="color:#05bb8a"></i>@item.DateTo</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-12 text-center">
+                            <a class="btn btn-primary py-3 px-5" asp-controller="ListOfAdventureTrips" asp-action="Index"> More </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <h3 style="text-align:center">
+                            Come Back Soon We Don't Have Any Adventure Trip Right Now
+                        </h3>
+                    }
+                    </div>
+               </div>
+        </div>
+    </div>
+</div>
+<!-- Property List End -->
+<!-- Call to Action Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="bg-light rounded p-3">
+            <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid rounded w-100" src="~/Website Template/img/call-to-action.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="mb-4">
+                            <h1 class="mb-3">Contact Us</h1>
+                            <p>Getting in touch with us is as easy as planning your next adventure with Rehleti.
+                                Whether you have a question, need assistance, or simply want to share your thoughts,
+                                our team is just a click or a call away. Your feedback is invaluable, helping us enhance
+                                your experience and cater to your specific needs. We're here to make your domestic tourism
+                                journey in Jordan a breeze, ensuring your adventure is unforgettable and as
+                                seamless as possible. Reach out to us today, and let us assist you in making your dream
+                                getaway a reality.
+                            </p>
+                        </div>
+                        <a asp-controller="ContactUs"asp-action="Create" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Call to Action End -->
+<!-- Testimonial Start -->
+@if (Model.Item4.Any()|| Model.Item3.Any())
+{
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Feedback</h1>
+            <p>Your feedback is our compass, guiding us towards excellence. We value your opinions, whether
+                they're about your recent chalet stay, thrilling adventure trip, or your overall experience
+                with Rehleti. Your insights are instrumental in helping us continually enhance our offerings
+                and services. We're committed to providing you with the best domestic tourism experiences in
+                Jordan, and your feedback is a vital part of that journey. Share your thoughts with us, and
+                let's keep making your adventures even more extraordinary together.</p>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            @foreach (var item in Model.Item4)
+            {
+                <div class="testimonial-item bg-light rounded p-3">
+                    <div class="bg-white border rounded p-4">
+                        <p>@item.feedback.Text</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="@Url.Content("~/Images/"+item.user.ImagePath)" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">@(item.user.FirstName+" "+item.user.LastName)</h6>
+                                <small>@item.trip.Name</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @foreach (var item in Model.Item3)
+            {
+                <div class="testimonial-item bg-light rounded p-3">
+                    <div class="bg-white border rounded p-4">
+                        <p>@item.feedback.Text</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="@Url.Content("~/Images/"+item.user.ImagePath)" style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">@(item.user.FirstName + " " + item.user.LastName)</h6>
+                                <small>@item.chalet.Name</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+}
+<!-- Testimonial End -->
+
+<script src="https://kit.fontawesome.com/your-unique-identifier.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>

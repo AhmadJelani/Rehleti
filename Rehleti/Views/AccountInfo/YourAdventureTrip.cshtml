@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Rehleti.Models.AdventureTrip>
+@{
+    ViewData["Title"] = "YourAdventureTrip";
+}
+@if (Model.Any())
+{
+<br />
+<br />
+<h1>@ViewData["Name"]'s Adventure Trips</h1>
+
+<div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <a class="btn btn-primary w-10 py-3" asp-controller="AdventureTrips" asp-action="Create" asp-route-id="@ViewData["cid"]">Create Adventure Trip</a>
+                    <div class="table-responsive">
+                        <table id="Example1" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Description)
+                                    </th>
+                                    <th>
+                                        Join Date
+                                    </th>
+                                    <th>
+                                        Number Of Guests
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DateTo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DateFrom)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Status)
+                                    </th>
+                                    <th>
+                                        Image
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.JoinDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberOfGuests)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateTo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateFrom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                            @{
+                                                var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                            }
+                                            <img src="@Url.Content($"{dir}/Images/"+item.ImagePath)" asp-append-version=true height="50px" width="50px" style="border-radius:30%">
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary w-60 py-3" asp-controller="AdventureTrips" asp-action="Details" asp-route-id="@item.Id" style="margin:1.5px">Details</a>
+                                            <a style="margin:1.5px" class="btn btn-outline-danger" asp-controller="AdventureTrips" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+}
+else
+{
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <h3>You Don't Have An Adventure Trip</h3>
+        <br>
+        <div class=" col-3">
+            <a class="btn btn-primary w-100 py-3" asp-controller="AdventureTrips" asp-action="Create">Add Your Adventure Trip</a>
+        </div>
+    </div>
+}

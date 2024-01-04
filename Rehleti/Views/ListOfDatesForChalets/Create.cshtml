@@ -1,0 +1,43 @@
+﻿@model Rehleti.Models.ListOfDatesForChalet
+
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<br />
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <form asp-action="Create">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" asp-for="DateFrom" id="Name" placeholder="Check-In">
+                                    <label asp-for="DateFrom">Check-In</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" asp-for="DateTo" id="NumberOfGuests" placeholder="Check-Out">
+                                    <label asp-for="DateTo">Check-Out</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Add Date</button>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" asp-controller="AccountInfo" asp-action="YourChalet">Back to List</button>
+                            </div>
+                        </div>
+                        <p style="color:red">@ViewData["ErrorDate"]</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

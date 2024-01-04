@@ -1,0 +1,48 @@
+﻿@model Rehleti.Models.BookChalet
+
+@{
+    ViewData["Title"] = "Details";
+}
+<br />
+<br />
+<h1>Details</h1>
+
+<div>
+    <h4>BookChalet</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Chalet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Chalet.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Check-In
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date.DateFrom)
+        </dd>
+        <dt class="col-sm-2">
+            Check-Out
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date.DateTo)
+        </dd>
+        <dt class = "col-sm-2">
+            User First Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            User Last Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.LastName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+</div>

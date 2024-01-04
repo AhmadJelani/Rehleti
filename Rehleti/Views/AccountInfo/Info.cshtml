@@ -1,0 +1,84 @@
+﻿@model Rehleti.Models.UserGuest
+@{
+    ViewData["Title"] = "Info";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rehleti || Account Info</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Info/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Info/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="booking-content">
+
+                <div class="booking-form">
+                    <form id="booking-form">
+                        <h2>Account Info</h2>
+                        <p>Your account information.</p>
+                        <div class="form-group form-input">
+                            <label class="form-label">Your First Name</label>
+                            <input type="text" asp-for="FirstName" disabled />
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Your Last Name</label>
+                            <input type="text" asp-for="LastName" disabled />
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Your Email</label>
+                            <input type="email" asp-for="Email" disabled />
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" asp-for="PhoneNumber" disabled />
+                        </div>
+                        <div class="form-group form-input">
+                            <label class="form-label">Join Date</label>
+                            <input type="text" asp-for="JoinDate" disabled />
+                        </div>
+                        <div class="form-group form-input">
+                            @{
+                                var dir = AppDomain.CurrentDomain.BaseDirectory;
+                            }
+                            <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true alt="" width="100px" height="100px" style="border-radius: 15px;">
+                        </div>
+                        <div class="form-group form-input"hidden>
+                            <label for="phone" class="form-label">Password</label>
+                            <input type="text" asp-for="Password" disabled />
+                        </div>
+                        <div class="form-group form-input"hidden>
+                            <label for="phone" class="form-label">Confirm Password</label>
+                            <input type="text" asp-for="ConfirmPassword" disabled />
+                        </div>
+                        <div class="form-group form-input"hidden>
+                            <label for="phone" class="form-label">Role ID</label>
+                            <input type="text" asp-for="RoleId" disabled />
+                        </div>
+                        <div class="form-submit">
+                            <a type="button" asp-area="" asp-controller="AccountInfo" asp-action="EditAccount" asp-route-id="@Model.Id" class="submit"style="text-decoration:none">Edit Account</a><br /><br /><br />
+                            <a type="button" asp-area="" asp-controller="AccountInfo" asp-action="YourChalet" asp-route-id="@Model.Id" class="submit" style="text-decoration:none">Add Chalet</a><br /><br /><br />
+                            <a type="button" asp-area="" asp-controller="AccountInfo" asp-action="YourAdventureTrip" asp-route-id="@Model.Id" class="submit" style="text-decoration:none">Add Adventure Trip</a><br /><br /><br />
+                            <a type="button" asp-controller="Home" asp-action="Index" asp-route-id="@Model.Id" class="submit" style="text-decoration:none">Back To Home</a><br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- JS -->
+    <script src="~/Info/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Info/js/main.js"></script>
+</body>
+</html>

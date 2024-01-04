@@ -1,0 +1,86 @@
+﻿@model Rehleti.Models.AdventureTrip
+
+@{
+    ViewData["Title"] = "Details";
+}
+<br />
+<br />
+<h1>Details</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            Proof Of Company Owner
+        </dt>
+        <dd class = "col-sm-10">
+            <a href="@Url.Content("~/Proof Files/"+Model.ProofOfCompanyOwner)">Download PDF</a>
+        </dd>
+        <dt class = "col-sm-2">
+            Join Date
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Number Of Guests
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfGuests)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            Check-In
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateFrom)
+        </dd>
+        <dt class = "col-sm-2">
+            Check-Out
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateTo)
+        </dd>
+        <dt class = "col-sm-2">
+            Image
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                var dir = AppDomain.CurrentDomain.BaseDirectory;
+            }
+            <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true height="50px" width="50px" style="border-radius:30%">
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyOwner)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CompanyOwner.FirstName)
+            @Html.DisplayFor(model => model.CompanyOwner.LastName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,106 @@
+﻿@model Rehleti.Models.Chalet
+
+@{
+    ViewData["Title"] = "Details";
+}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<br />
+<br />
+<h1>Details</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            Proof Of Owner
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Url.Content("~/Proof Files/"+Model.ProofOfOwner)">Download PDF</a>
+        </dd>
+        <dt class="col-sm-2">
+            Join Date
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JoinDate)
+        </dd>
+        <dt class="col-sm-2">
+            Number Of Guests
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfGuests)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            Image
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var dir = AppDomain.CurrentDomain.BaseDirectory;
+            }
+            <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true height="50px" width="50px" style="border-radius:30%">
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner.FirstName)
+            @Html.DisplayFor(model => model.Owner.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            Location
+        </dt>
+        <dt>
+            <button id="showMapButton" class="btn btn-primary w-100 py-3">Show Map</button>
+        </dt>
+    </dl>
+    <br />
+    <div id="map" style="height: 400px;" class="col-6"></div>
+    <br />
+</div>
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+</div>
+<script>
+    document.getElementById('showMapButton').addEventListener('click', function () {
+        document.getElementById('map').style.display = 'block';
+
+        if (map) {
+
+            map = L.map('map').setView([@Model.LacationLatitude, @Model.LacationLongitude], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var marker = L.marker([@Model.LacationLatitude, @Model.LacationLongitude], { draggable: false }).addTo(map);
+
+            marker.on('dragend', function (event) {
+                var latLng = event.target.getLatLng();
+                document.getElementById('LacationLatitude').value = latLng.lat;
+                document.getElementById('LacationLongitude').value = latLng.lng;
+            });
+        }
+    });
+</script>

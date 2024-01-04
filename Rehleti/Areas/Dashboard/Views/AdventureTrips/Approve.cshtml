@@ -1,0 +1,80 @@
+﻿@model Rehleti.Models.AdventureTrip
+
+@{
+    ViewData["Title"] = "Approve";
+}
+<br />
+<br />
+<h1>Approve</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Approve">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group"hidden>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="ProofOfCompanyOwner" class="control-label"></label>
+                <input asp-for="ProofOfCompanyOwner" class="form-control" />
+                <span asp-validation-for="ProofOfCompanyOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="JoinDate" class="control-label"></label>
+                <input asp-for="JoinDate" class="form-control" />
+                <span asp-validation-for="JoinDate" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="NumberOfGuests" class="control-label"></label>
+                <input asp-for="NumberOfGuests" class="form-control" />
+                <span asp-validation-for="NumberOfGuests" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="CompanyOwnerId" class="control-label"></label>
+                <select asp-for="CompanyOwnerId" class="form-control" asp-items="ViewBag.CompanyOwnerId"></select>
+                <span asp-validation-for="CompanyOwnerId" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="DateTo" class="control-label"></label>
+                <input asp-for="DateTo" class="form-control" />
+                <span asp-validation-for="DateTo" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="DateFrom" class="control-label"></label>
+                <input asp-for="DateFrom" class="form-control" />
+                <span asp-validation-for="DateFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group"hidden>
+                <label asp-for="ImagePath" class="control-label"></label>
+                <input asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4>Do You Want To Approve This Adventure Trip?</h4>
+                <input type="submit" value="Approve" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+</div>
