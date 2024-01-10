@@ -93,7 +93,11 @@
                                     <div class="property-item rounded overflow-hidden">
                                         <div class="property-item rounded overflow-hidden">
                                             <div class="position-relative overflow-hidden">
-                                                <a asp-route-id="@item.Id" asp-controller="BookChalets" asp-action="Create"><img class="img-fluid" src="@Url.Content("~/Images/"+item.ImagePath)" alt=""></a>
+                                            @{
+                                                var dir = AppDomain.CurrentDomain.BaseDirectory;
+                                                //D:\Rehleti\Images
+                                            }
+                                            <a asp-route-id="@item.Id" asp-controller="BookChalets" asp-action="Create"><img class="img-fluid" src="@Url.Content($"~/Images/"+item.ImagePath)" alt=""></a>
                                             </div>
                                             <div class="p-4 pb-0">
                                                 <h5 class="text-primary mb-3">JD @item.Price</h5>
@@ -136,8 +140,9 @@
                                     <div class="position-relative overflow-hidden">
                                         @{
                                             var dir = AppDomain.CurrentDomain.BaseDirectory;
+
                                         }
-                                        <a asp-route-id="@item.Id" asp-area="" asp-controller="BookTrips" asp-action="Create"><img class="img-fluid" src="@Url.Content(item.ImagePath)" alt=""></a>
+                                        <a asp-route-id="@item.Id" asp-area="" asp-controller="BookTrips" asp-action="Create"><img class="img-fluid" src="@Url.Content("~/Images/"+item.ImagePath)" alt=""></a>
                                     </div>
                                     <div class="p-4 pb-0">
                                         <h5 class="text-primary mb-3">JD @item.Price</h5>

@@ -93,7 +93,7 @@
                                         @{
                                             var dir = AppDomain.CurrentDomain.BaseDirectory;
                 }
-                <img src="@Url.Content($"{dir}/Images/"+item.ImagePath)" asp-append-version=true height="50px" width="50px" style="border-radius:30%">
+                <img src="@Url.Content("~/Images/"+item.ImagePath)" asp-append-version=true height="50px" width="50px" style="border-radius:30%">
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Owner.FirstName)

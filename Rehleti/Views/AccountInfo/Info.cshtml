@@ -51,7 +51,7 @@
                             @{
                                 var dir = AppDomain.CurrentDomain.BaseDirectory;
                             }
-                            <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true alt="" width="100px" height="100px" style="border-radius: 15px;">
+                            <img src="@Url.Content("~/Images/"+Model.ImagePath)" asp-append-version=true alt="" width="100px" height="100px" style="border-radius: 15px;">
                         </div>
                         <div class="form-group form-input"hidden>
                             <label for="phone" class="form-label">Password</label>

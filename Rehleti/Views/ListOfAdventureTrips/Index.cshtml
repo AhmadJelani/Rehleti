@@ -99,7 +99,7 @@
                                             @{
                                             var dir = AppDomain.CurrentDomain.BaseDirectory;
                                         }
-                                            <a asp-route-id="@item.Id" asp-controller="BookTrips" asp-action="Create"><img class="img-fluid" src="@Url.Content($"{dir}/Images/"+item.ImagePath)" alt=""></a>
+                                            <a asp-route-id="@item.Id" asp-controller="BookTrips" asp-action="Create"><img class="img-fluid" src="@Url.Content("~/Images/"+item.ImagePath)" alt=""></a>
                                         </div>
                                         <div class="p-4 pb-0">
                                             <h5 class="text-primary mb-3">JD @item.Price</h5>

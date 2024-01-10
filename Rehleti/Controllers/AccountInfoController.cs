@@ -83,7 +83,7 @@ namespace Rehleti.Controllers
                         ViewData["ImgError"] = "Make sure to add the photo with the appropriate extensions (jpg, jpeg, or png).";
                         return View(userGuest);
                     }
-                string wwwRootPath = AppDomain.CurrentDomain.BaseDirectory;
+                string wwwRootPath = _environment.WebRootPath;
 
                 string File_Name = Guid.NewGuid().ToString() + userGuest.ImageFile.FileName;
 

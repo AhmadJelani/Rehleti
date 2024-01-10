@@ -82,7 +82,7 @@ namespace Rehleti.Controllers
             {
                 if (adventureTrip.ImageFile != null)
                 {
-                    string wwwRootPath = AppDomain.CurrentDomain.BaseDirectory;
+                    string wwwRootPath = _environment.WebRootPath;
                     string File_Name = Guid.NewGuid().ToString() + adventureTrip.ImageFile.FileName;
                     string path = Path.Combine(wwwRootPath + "/Images/" + File_Name);
                     using (var fileStream = new FileStream(path, FileMode.Create))

@@ -43,7 +43,7 @@
                                         @{
                                             var dir = AppDomain.CurrentDomain.BaseDirectory;
                                         }
-                                        <img src="@Url.Content($"{dir}/Images/"+item.ImagePath)" alt="image"height="50px"width="50px"style="border-radius:30%" />
+                                        <img src="@Url.Content("~/Images/"+item.ImagePath)" alt="image"height="50px"width="50px"style="border-radius:30%" />
                                     </td>
                                     <td>
                                         @item.FirstName

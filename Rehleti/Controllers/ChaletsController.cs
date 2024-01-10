@@ -105,7 +105,7 @@ namespace Rehleti.Controllers
                         ViewData["ImageError"] = "Make sure to add the photo with the appropriate extensions (jpg, jpeg, or png).";
                         return View(chalet);
                     }
-                    string wwwRootPath = AppDomain.CurrentDomain.BaseDirectory;
+                    string wwwRootPath = _environment.WebRootPath;
                     string file_Name = Guid.NewGuid().ToString() + item.FileName;
                     string path = Path.Combine(wwwRootPath + "/Images/", file_Name);
                     using (var fileStream = new FileStream(path, FileMode.Create))

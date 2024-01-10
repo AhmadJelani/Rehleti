@@ -27,7 +27,7 @@ namespace Rehleti.Controllers
 			{
 				if (userGuest.ImageFile != null)
 				{
-                    string wwwRootPath = AppDomain.CurrentDomain.BaseDirectory;
+                    string wwwRootPath = _environment.WebRootPath;
 
 					string File_Name = Guid.NewGuid().ToString() + userGuest.ImageFile.FileName;
 

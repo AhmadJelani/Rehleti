@@ -94,7 +94,7 @@
                         @{
                             var dir = AppDomain.CurrentDomain.BaseDirectory;
                         }
-                        <img src="@Url.Content($"{dir}/Images/" + imagePath)" alt="Image">
+                        <img src="@Url.Content($"~/Images/" + imagePath)" alt="Image">
                     </div>
                 }
             </div>
@@ -127,7 +127,7 @@
                                 @{
                                             var dir = AppDomain.CurrentDomain.BaseDirectory;
                                         }
-                                <img class="img-fluid flex-shrink-0 rounded" src="@Url.Content($"{dir}/Images/"+item.user.ImagePath)" style="width: 45px; height: 45px;">
+                                <img class="img-fluid flex-shrink-0 rounded" src="@Url.Content($"~/Images/"+item.user.ImagePath)" style="width: 45px; height: 45px;">
                                 <div class="ps-3">
                                     <h6 class="fw-bold mb-1">@(item.user.FirstName + " " + item.user.LastName)</h6>
                                     <small>@item.chalet.Name</small>

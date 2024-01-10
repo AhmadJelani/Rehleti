@@ -90,7 +90,7 @@
                                 @{
                                     var dir = AppDomain.CurrentDomain.BaseDirectory;
                                 }
-                                <img src="@Url.Content($"{dir}/Images/"+ViewData["ImagePath"])" alt="profile" />
+                                <img src="@Url.Content("~/Images/"+ViewData["ImagePath"])" alt="profile" />
                                 <span class="nav-profile-name">@ViewData["Name"]</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">

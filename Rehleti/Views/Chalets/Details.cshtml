@@ -52,7 +52,7 @@
             @{
                 var dir = AppDomain.CurrentDomain.BaseDirectory;
             }
-            <img src="@Url.Content($"{dir}/Images/"+Model.ImagePath)" asp-append-version=true width="75px" height="75px" style="border-radius30%" />
+            <img src="@Url.Content($"~/Images/"+Model.ImagePath)" asp-append-version=true width="75px" height="75px" style="border-radius30%" />
         </dd>
     </dl>
 </div>
